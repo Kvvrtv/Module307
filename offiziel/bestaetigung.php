@@ -55,10 +55,6 @@
 		$sql->bindParam(':bday', $bday);
 		$sql->bindParam(':school', $school);
 		$sql->bindParam(':class', $class);
-		
-		
-		
-		
 		$sql->bindParam(':level', $level);
 		$sql->bindParam(':postcode', $postcode);
 		$sql->bindParam(':place', $place);
