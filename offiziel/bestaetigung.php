@@ -44,37 +44,43 @@
 		<!-- database-->
 		<?php
 		try {
-		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-		// set the PDO error mode to exception
-		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		$sql = $conn->prepare("INSERT INTO personen (`Geschlecht`, `Nachname`, `Vorname`, `Geburtstag`, `Schule`, `Klasse`, `Niveau`, `PLZ`, `Ort`, `Strasse`, `Hausnummer`, `Zusatz Strasse`, `Telefon`, `E-Mail`)
-		VALUES (:gender, :surname, :firstname, :bday, :school, :class, :level, :postcode, :place, :street, :housenumber, :additionalstreet, :mobile, :email)");
-		$sql->bindParam(':gender', $gender);
-		$sql->bindParam(':surname', $surname);
-		$sql->bindParam(':firstname', $firstname);
-		$sql->bindParam(':bday', $bday);
-		$sql->bindParam(':school', $school);
-		$sql->bindParam(':class', $class);
-		$sql->bindParam(':level', $level);
-		$sql->bindParam(':postcode', $postcode);
-		$sql->bindParam(':place', $place);
-		$sql->bindParam(':street', $street);
-		$sql->bindParam(':housenumber', $housenumber);
-		$sql->bindParam(':additionalstreet', $additionalstreet);
-		$sql->bindParam(':mobile', $mobile);
-		$sql->bindParam(':email', $email);
-		// use exec() because no results are returned
-		$sqlevent = $conn->prepare("INSERT INTO personen (`Geschlecht`, `Nachname`, `Vorname`, `Geburtstag`, `Schule`, `Klasse`, `Niveau`, `PLZ`, `Ort`, `Strasse`, `Hausnummer`, `Zusatz Strasse`, `Telefon`, `E-Mail`)
-		VALUES (:gender, :surname, :firstname, :bday, :school, :class, :level, :postcode, :place, :street, :housenumber, :additionalstreet, :mobile, :email)");
-		$conn->exec($sql);
-		//$conn->exec($sqlevent);
-		$conn = null;
-		} catch (PDOException $e) {
+			$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+			// set the PDO error mode to exception
+			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$sql = $conn->prepare("INSERT INTO personen (`Geschlecht`, `Nachname`, `Vorname`, `Geburtstag`, `Schule`, `Klasse`, `Niveau`, `PLZ`, `Ort`, `Strasse`, `Hausnummer`, `Zusatz Strasse`, `Telefon`, `E-Mail`)
+			VALUES (:gender, :surname, :firstname, :bday, :school, :class, :level, :postcode, :place, :street, :housenumber, :additionalstreet, :mobile, :email)");
+			$sql->bindParam(':gender', $gender);
+			$sql->bindParam(':surname', $surname);
+			$sql->bindParam(':firstname', $firstname);
+			$sql->bindParam(':bday', $bday);
+			$sql->bindParam(':school', $school);
+			$sql->bindParam(':class', $class);
+			$sql->bindParam(':level', $level);
+			$sql->bindParam(':postcode', $postcode);
+			$sql->bindParam(':place', $place);
+			$sql->bindParam(':street', $street);
+			$sql->bindParam(':housenumber', $housenumber);
+			$sql->bindParam(':additionalstreet', $additionalstreet);
+			$sql->bindParam(':mobile', $mobile);
+			$sql->bindParam(':email', $email);
+			// use exec() because no results are returned
+			
+			$conn->exec($sql);
+			$conn = null;
+		} 
+		catch (PDOException $e) {
 			echo $sql . "<br>" . $e->getMessage();
 		}
 		
-		
-		$conn = null;
+		try {
+			$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+			// set the PDO error mode to exception
+			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$sqlevent = $conn->prepare("UPDATE event
+									SET freie Plaetze = freie Plaetze - 1
+									WHERE Datum = '18.02.2020' AND Beruf ='Infomatiker EFZ Applikation';");
+			$conn->exec($sqlevent);
+			$conn = null;
 		?>
 		<!-- end database -->
 		<!--Navbar -->
