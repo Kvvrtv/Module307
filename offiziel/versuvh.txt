@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<style>
+	.table{
+		margin-left:10%;
+	}
+	</style>
+	<head>
+		<link rel="stylesheet" href="bulma-0.8.0\css\bulma.min.css">
+		<link rel="stylesheet" href="bulma-0.8.0\css\bulma.css">
+	</head>
+	<body>
+		<?php
+			//Variabel
+			
+			//database
+			$servername = "127.0.0.1";
+			$username = "root";
+			$password = "";
+			$dbname = "tieinternational";
+			//end database 
+			
+			$apprenticeship;
+			$date;
+			
+			//end Variabel
+		?>
+		
+		<!--Navbar -->
+		<nav class="navbar" color="grey-light">
+		  <div class="navbar-brand">
+			<a class="navbar-item" href="http://localhost/Module307/offiziel/index.php">
+			  <img src="Bilder\Logo.png" alt="TIE Logo">
+			</a>
+		  </div>
+		</nav>
+		<!-- end Navbar-->
+		<!-- title/Spruch -->
+		<div class="columns">
+		  <div class="column is-one-fifth"></div>
+		  <div <p class="title is-1">Jetzt kannst du noch entscheiden</p></div>
+		</div>
+		<div class="columns">
+		  <div class="column is-two-fifths"></div>
+		  <p class="subtitle is-2">Finde heraus was zu dir passt </p>
+		</div>
+		<!-- end title/motto -->
+		<!-- table -->
+		<div>
+			<table class="table">
+				<thead>
+					<tr>
+					  <th>Datum</th>
+					  <th>Beruf</th>
+					  <th>freie Plätze</th>
+					  <th>Anmeldung</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+					// Create connection
+					$conn = new mysqli($servername, $username, $password, $dbname);
+					// Check connection
+					if ($conn->connect_error) {
+						die("Connection failed: " . $conn->connect_error);
+					}
+					
+
+					$sql = "SELECT * FROM event";
+					/*foreach ($conn->query($sql) as $row) {
+					echo ".$row['Datum'].";
+					}*/	
+					$result = $conn->query($sql);
+					if ($result->num_rows > 0) {
+						// output data of each row
+						while($row = $result->fetch_assoc()) {
+							session_start();
+							$_SESSION['apprenticeship'] = $row['Beruf'];
+							$_SESSION['date'] = $row['Datum'];
+							echo "					
+							  <th>".$apprenticeship."</th>
+							  <td>".$date."</td>
+							  <td>".$row['freie Plaetze']."</td>
+							  <td><form action='http://localhost/Module307/offiziel/schnupperlehreFormular.php?apprenticeship=" . $_SESSION['apprenticeship'] . "&date=" . $_SESSION['date'] . "'>
+							  <input class='button is-link' type='submit' value='anmelden' /></form>
+							</td>
+							</tr>
+							" ;
+						} 
+					}
+					else {
+						echo "0 results";
+					}
+									
+					?>
+				</tbody>
+			</table>
+		</div>
+		<!-- end table -->
+	</body>
+</html>
