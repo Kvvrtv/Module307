@@ -50,10 +50,7 @@
 		<!-- text and picture -->
 		<p style="margin-left:10%;"> 
 		text text text text text text text text text text text text</br>
-		text text text text text text text text text text text text</br>
-		
-		
-		
+		text text text text text text text text text text text text</br>		
 		text text text text text text text text text text text text</br>
 		text text text text text text text text text text text text</br>
 		text text text text text text text text text text text text</br>
