@@ -33,10 +33,11 @@
 		$additionalstreet = $_POST['ZusatzStrasse'];
 		$mobile = $_POST['Telefon'];
 		$email = $_POST['E-Mail'];
+		
 		//end database 
 		
-		//$apprenticeshipBestaetigung = $_GET['apprenticeship'];
-		//$dateBestaetigung = $_GET['date'];
+		$apprenticeshipBestaetigung = $_POST['apprenticeship'];
+		$dateBestaetigung = $_POST['date'];
 		
 		//end Variabel
 		?>
@@ -71,16 +72,7 @@
 		catch (PDOException $e) {
 			echo $sql . "<br>" . $e->getMessage();
 		}
-		
-		try {
-			$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-			// set the PDO error mode to exception
-			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-			$sqlevent = $conn->prepare("UPDATE event
-									SET freie Plaetze = freie Plaetze - 1
-									WHERE Datum = '18.02.2020' AND Beruf ='Infomatiker EFZ Applikation';");
-			$conn->exec($sqlevent);
-			$conn = null;
+
 		?>
 		<!-- end database -->
 		<!--Navbar -->
