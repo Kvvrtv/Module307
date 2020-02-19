@@ -269,6 +269,8 @@
 				</div>
 			  </div>
 			</div>
+			<input class="input" type="hidden" pattern="<?php echo $apprenticeship?>" name="Apprenticeship" >
+			<input class="input" type="hidden" pattern="<?php echo $date?>" name="Date" >
 			<div class="field is-horizontal">
 			  <div class="field-label">
 				<!-- Left empty for spacing -->
