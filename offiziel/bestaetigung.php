@@ -36,18 +36,38 @@
 		
 		//end database 
 		
-		$apprenticeshipBestaetigung = $_POST['apprenticeship'];
-		$dateBestaetigung = $_POST['date'];
+		$apprenticeshipBestaetigung = $_POST['Apprenticeship'];
+		$dateBestaetigung = $_POST['Date'];
 		
 		//end Variabel
-		?>
 		
-		<!-- database-->
-		<?php
-		try {
+		// database
+		try{
+		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            // set the PDO error mode to exception
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // prepare sql and bind parameters
+            $stmt = $conn->prepare("INSERT INTO personen (`Nachname`, `Vorname`, `E-Mail`)
+            VALUES (:firstname, :lastname, :email)");
+            $stmt->bindParam(':firstname', $firstname);
+            $stmt->bindParam(':lastname', $surname);
+            $stmt->bindParam(':email', $email);
+
+            $stmt->execute();
+
+    echo "New records created successfully";
+    }
+catch(PDOException $e)
+    {
+    echo "Error: " . $e->getMessage();
+    }
+$conn = null;
+
+		/*try {
 			$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 			// set the PDO error mode to exception
-			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			$conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING, PDO::ERRMODE_EXCEPTION);
 			$sql = $conn->prepare("INSERT INTO personen (`Geschlecht`, `Nachname`, `Vorname`, `Geburtstag`, `Schule`, `Klasse`, `Niveau`, `PLZ`, `Ort`, `Strasse`, `Hausnummer`, `Zusatz Strasse`, `Telefon`, `E-Mail`)
 			VALUES (:gender, :surname, :firstname, :bday, :school, :class, :level, :postcode, :place, :street, :housenumber, :additionalstreet, :mobile, :email)");
 			$sql->bindParam(':gender', $gender);
@@ -65,13 +85,13 @@
 			$sql->bindParam(':mobile', $mobile);
 			$sql->bindParam(':email', $email);
 			// use exec() because no results are returned
-			
 			$conn->exec($sql);
 			$conn = null;
 		} 
 		catch (PDOException $e) {
 			echo $sql . "<br>" . $e->getMessage();
-		}
+			print_r($sql->errorInfo());
+		}*/
 
 		?>
 		<!-- end database -->
