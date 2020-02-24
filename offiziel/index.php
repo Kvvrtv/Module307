@@ -48,12 +48,12 @@
 		</div>
 		<!-- end title/motto -->
 		<!-- text and picture -->
-		<p style="margin-left:10%;"> 
+		<p style="margin-left:10%;"> </br></br></br>
 		text text text text text text text text text text text text</br>
 		text text text text text text text text text text text text</br>		
 		text text text text text text text text text text text text</br>
 		text text text text text text text text text text text text</br>
-		text text text text text text text text text text text text</br>
+		text text text text text text text text text text text text</br></br>
 		</p>
 		<div style="margin-left:10%;" class="columns">
 		  <div class="column">
@@ -81,7 +81,7 @@
 			
 		  </div>
 		</div>
-		
+		</br></br></br>
 		
 		
 		<!-- end of text and picture -->
