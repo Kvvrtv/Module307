@@ -11,9 +11,7 @@
 	</head>
 	<body>
 		<?php
-			session_start();
-
-			//Variabel
+		    //Variabel
 			
 			//database
 			$servername = "127.0.0.1";
@@ -116,14 +114,18 @@
 						// output data of each row
 						while($row = $result->fetch_assoc()) {
 							echo "					
-							  <th>".$row['Datum']."</th>
-							  <td>".$row['Beruf']."</td>
-							  <td>".$row['freie Plaetze']." von ".$row['MaxPlaetze']."</td>
-							  <td><a href='http://localhost/Module307/offiziel/schnupperlehreFormular.php?apprenticeship=" . $row['Beruf'] . "&date=" . $row['Datum'] . "'>
-							  <input class='button is-link' type='submit' value='anmelden' /></a>
-							</td>
-							</tr>
-							" ;
+							<th>".$row['Datum']."</th>
+							<td>".$row['Beruf']."</td>
+							<td>".$row['freie Plaetze']." von ".$row['MaxPlaetze']."</td>";
+							 if ($row['freie Plaetze'] != "0") {
+							  echo "<td><a href='http://localhost/Module307/offiziel/schnupperlehreFormular.php?apprenticeship=" . $row['Beruf'] . "&date=" . $row['Datum'] . "'>
+							  <input class='button is-link' type='submit' value='anmelden' /></a></td>";
+							  $row['freie Plaetze'] - 1;
+							 }
+							 else{
+							  echo "<td><input class='button is-link' type='submit' value='anmelden' disabled/></td>";
+							 }
+							 echo "</tr>";
 						} 
 					}				
 					?>
