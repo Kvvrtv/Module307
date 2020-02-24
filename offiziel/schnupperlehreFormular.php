@@ -15,7 +15,7 @@
 		//Variabel
 		
 		//form
-		$name="[A-Za-züöäüèéàèÜÖÄÈÉÀ.-\s]{2,80}";
+		$name="[A-Za-züöäüèéàèÜÖÄÈÉÀ.\-\s]{2,80}";
 		$klasse="[A-Za-z0-9üöäüèéàèÜÖÄÈÉÀ.,\s]{1,21}";
 		$niveau="[A-Za-z1-3üöäüèéàèÜÖÄÈÉÀ.,\s]{1,5}";
 		$plz="[0-9]{4}";
@@ -60,7 +60,7 @@
 		
 		
 		<!-- form -->
-		<form action="http://localhost/module307/offiziel/bestaetigung.php" method= "post"> 
+		<form action="http://localhost/module307/offiziel/bestaetigung.php" method= "post">
 		  <div <p class="title is-4" style="margin-left:45%;">Erfasse jetzt deine Daten</p></div></br>
 			<div class="field is-horizontal">
 			  <div class="field-label is-normal">
@@ -269,8 +269,8 @@
 				</div>
 			  </div>
 			</div>
-			<input class="input" type="hidden" pattern="<?php echo $apprenticeship?>" name="Apprenticeship" >
-			<input class="input" type="hidden" pattern="<?php echo $date?>" name="Date" >
+			<input class="input" type="" value="<?php echo $apprenticeship?>" name="Apprenticeship" >
+			<input class="input" type="" value="<?php echo $date?>" name="Date" >
 			<div class="field is-horizontal">
 			  <div class="field-label">
 				<!-- Left empty for spacing -->
