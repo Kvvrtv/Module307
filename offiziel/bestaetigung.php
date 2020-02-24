@@ -48,21 +48,32 @@
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
             // prepare sql and bind parameters
-            $stmt = $conn->prepare("INSERT INTO personen (`Nachname`, `Vorname`, `E-Mail`)
-            VALUES (:firstname, :lastname, :email)");
-            $stmt->bindParam(':firstname', $firstname);
-            $stmt->bindParam(':lastname', $surname);
-            $stmt->bindParam(':email', $email);
+            $stmt = $conn->prepare("INSERT INTO personen (`Geschlecht`, `Nachname`, `Vorname`, `Geburtstag`, `Schule`, `Klasse`, `Niveau`, `PLZ`, `Ort`, `Strasse`, `Hausnummer`, `Zusatz Strasse`, `Telefon`, `E-Mail`)
+            VALUES (:gender, :surname, :firstname, :bday, :school, :class, :level, :postcode, :place, :street, :housenumber, :additionalstreet, :mobile, :email)");
+            $stmt->bindParam(':gender', $gender);
+            $stmt->bindParam(':surname', $surname);
+  			$stmt->bindParam(':firstname', $firstname);
+  			$stmt->bindParam(':bday', $bday);
+            $stmt->bindParam(':school', $school);
+            $stmt->bindParam(':class', $class);
+            $stmt->bindParam(':level', $level);
+            $stmt->bindParam(':postcode', $postcode);
+           	$stmt->bindParam(':place', $place);
+            $stmt->bindParam(':street', $street);
+            $stmt->bindParam(':housenumber', $housenumber);
+            $stmt->bindParam(':additionalstreet', $additionalstreet);
+           	$stmt->bindParam(':mobile', $mobile);
+          	$stmt->bindParam(':email', $email);
 
             $stmt->execute();
 
-    echo "New records created successfully";
-    }
-catch(PDOException $e)
-    {
-    echo "Error: " . $e->getMessage();
-    }
-$conn = null;
+             echo "New records created successfully";
+             }
+            catch(PDOException $e)
+                {
+                echo "Error: " . $e->getMessage();
+                }
+            $conn = null;
 
 		/*try {
 			$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
