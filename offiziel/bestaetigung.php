@@ -64,10 +64,7 @@
             $stmt->bindParam(':additionalstreet', $additionalstreet);
            	$stmt->bindParam(':mobile', $mobile);
           	$stmt->bindParam(':email', $email);
-
-            $stmt->execute();
-
-             echo "New records created successfully";
+            // echo "New records created successfully";
              }
             catch(PDOException $e)
                 {
@@ -138,8 +135,8 @@
 					Hey <?php echo $firstname ?>!</br>
 					Deine Daten wurden erfolgreich zugestellt. Wir melden uns so schnell wie möglich.
 					Bis dahin findest du uns <a href="https://www.tie-international.com">hier</a>!
-					Wir freuen uns dich <!-- am <?php echo $dateBestaetigung ?>--> kennenzulernen und 
-					dir einen genaueren Einblick <!--als <?php echo $apprenticeshipBestaetigung ?>--> zu erschaffen.</br>		  
+					Wir freuen uns dich am <?php echo $dateBestaetigung ?> kennenzulernen und
+					dir einen genaueren Einblick als <?php echo $apprenticeshipBestaetigung ?> zu erschaffen.</br>
 			  </div>
 			</article>
 		  </div>
