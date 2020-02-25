@@ -27,7 +27,9 @@
 		
 		$apprenticeship = $_GET['apprenticeship'];
 		$date = $_GET['date'];
-		
+		$freiePlaetze = $_GET['freiePlaetze'];
+        $idEvent = $_GET['idEvent'];
+
 		//end Variabel
 		?>
 		<!--Navbar -->
@@ -269,8 +271,10 @@
 				</div>
 			  </div>
 			</div>
-			<input class="input" type="" value="<?php echo $apprenticeship?>" name="Apprenticeship" >
-			<input class="input" type="" value="<?php echo $date?>" name="Date" >
+			<input class="input" type="hidden" value="<?php echo $apprenticeship?>" name="Apprenticeship" >
+			<input class="input" type="hidden" value="<?php echo $date?>" name="Date" >
+			<input class="input" type="hidden" value="<?php echo $freiePlaetze?>" name="FreiePlaetze" >
+			<input class="input" type="hidden" value="<?php echo $idEvent?>" name="IdEvent" >
 			<div class="field is-horizontal">
 			  <div class="field-label">
 				<!-- Left empty for spacing -->
