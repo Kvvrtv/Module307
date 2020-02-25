@@ -113,21 +113,21 @@
 					if ($result->num_rows > 0) {
 						// output data of each row
 						while($row = $result->fetch_assoc()) {
-							echo "					
-							<th>".$row['Datum']."</th>
-							<td>".$row['Beruf']."</td>
-							<td>".$row['freie Plaetze']." von ".$row['MaxPlaetze']."</td>";
-							 if ($row['freie Plaetze'] != "0") {
-							  echo "<td><a href='http://localhost/Module307/offiziel/schnupperlehreFormular.php?apprenticeship=" . $row['Beruf'] . "&date=" . $row['Datum'] . "'>
+							echo "
+							<th>" . $row['Datum'] . "</th>
+							<td>" . $row['Beruf'] . "</td>
+							<td>" . $row['freiePlaetze'] . " von " . $row['MaxPlaetze'] . "</td>";
+							 if ($row['freiePlaetze'] != "0") {
+							  echo "<td><a href='http://localhost/Module307/offiziel/schnupperlehreFormular.php?apprenticeship=" . $row['Beruf'] . "&date=" . $row['Datum'] . "&freiePlaetze=" . $row['freiePlaetze'] . "&idEvent=" . $row['IDEvent'] . "'>
 							  <input class='button is-link' type='submit' value='anmelden' /></a></td>";
-							  $row['freie Plaetze'] - 1;
-							 }
-							 else{
-							  echo "<td><input class='button is-link' type='submit' value='anmelden' disabled/></td>";
-							 }
-							 echo "</tr>";
-						} 
-					}				
+					        }
+							else{
+						      echo "<td><input class='button is-link' type='submit' value='anmelden' disabled/></td>";
+							}
+							  echo "</tr>";
+				        }
+				    $conn = null;
+					}
 					?>
 				</tbody>
 			</table>
