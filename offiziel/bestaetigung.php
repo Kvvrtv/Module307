@@ -38,15 +38,18 @@
 		
 		$apprenticeshipBestaetigung = $_POST['Apprenticeship'];
 		$dateBestaetigung = $_POST['Date'];
+		$freiePlaetzeBestaetigung = $_POST['FreiePlaetze'];
+		$idEventBestaetigung = $_POST['IdEvent'];
 		
 		//end Variabel
 		
 		// database
-		try{
-		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-            // set the PDO error mode to exception
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        // set the PDO error mode to exception
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+		try{
             // prepare sql and bind parameters
             $stmt = $conn->prepare("INSERT INTO personen (`Geschlecht`, `Nachname`, `Vorname`, `Geburtstag`, `Schule`, `Klasse`, `Niveau`, `PLZ`, `Ort`, `Strasse`, `Hausnummer`, `Zusatz Strasse`, `Telefon`, `E-Mail`)
             VALUES (:gender, :surname, :firstname, :bday, :school, :class, :level, :postcode, :place, :street, :housenumber, :additionalstreet, :mobile, :email)");
@@ -64,12 +67,24 @@
             $stmt->bindParam(':additionalstreet', $additionalstreet);
            	$stmt->bindParam(':mobile', $mobile);
           	$stmt->bindParam(':email', $email);
-            // echo "New records created successfully";
-             }
-            catch(PDOException $e)
-                {
-                echo "Error: " . $e->getMessage();
-                }
+          	$stmt->execute();
+        }
+        catch(PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+
+        try{
+           $neuFreiePlaetzeBestaetigung = $freiePlaetzeBestaetigung - 1;
+
+		   $sql = "UPDATE event SET freiePlaetze = " . $neuFreiePlaetzeBestaetigung . " WHERE IDEvent = " . $idEventBestaetigung . "";
+
+           $stmtTwo = $conn->prepare($sql);
+           $stmtTwo->execute();
+        }
+        catch(PDOException $e){
+             echo "Error2: " . $e->getMessage();
+        }
+
             $conn = null;
 
 		/*try {
