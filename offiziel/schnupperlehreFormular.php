@@ -23,6 +23,7 @@
 		$telefon="[0-9]{9}";
 		$email="[A-Za-z0-9üöäüèéàèÜÖÄÈÉÀ\W]{8,200}";
 		$geburtstag="^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$";
+		$zusatzStrasse="[A-Za-züöäüèéàèÜÖÄÈÉÀ0-9\.\/\-\s]{2,80}";
 		//end form
 		
 		$apprenticeship = $_GET['apprenticeship'];
@@ -232,7 +233,7 @@
 			  <div class="field-body">
 				<div class="field">
 				  <div class="control">
-					<input class="input" type="text" pattern="<?php echo $name?>" name="ZusatzStrasse" placeholder="">
+					<input class="input" type="text" pattern="<?php echo $zusatzStrasse?>" name="ZusatzStrasse" placeholder="">
 					<p class="help">Es sind nur Buchstaben und Leerschläge erlaubt</p>
 				  </div>
 				</div>
