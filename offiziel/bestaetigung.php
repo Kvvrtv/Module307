@@ -49,41 +49,50 @@
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		try{
-            // prepare sql and bind parameters
-            $stmt = $conn->prepare("INSERT INTO personen (`Geschlecht`, `Nachname`, `Vorname`, `Geburtstag`, `Schule`, `Klasse`, `Niveau`, `PLZ`, `Ort`, `Strasse`, `Hausnummer`, `Zusatz Strasse`, `Telefon`, `E-Mail`)
-            VALUES (:gender, :surname, :firstname, :bday, :school, :class, :level, :postcode, :place, :street, :housenumber, :additionalstreet, :mobile, :email)");
-            $stmt->bindParam(':gender', $gender);
-            $stmt->bindParam(':surname', $surname);
-  			$stmt->bindParam(':firstname', $firstname);
-  			$stmt->bindParam(':bday', $bday);
-            $stmt->bindParam(':school', $school);
-            $stmt->bindParam(':class', $class);
-            $stmt->bindParam(':level', $level);
-            $stmt->bindParam(':postcode', $postcode);
-           	$stmt->bindParam(':place', $place);
-            $stmt->bindParam(':street', $street);
-            $stmt->bindParam(':housenumber', $housenumber);
-            $stmt->bindParam(':additionalstreet', $additionalstreet);
-           	$stmt->bindParam(':mobile', $mobile);
-          	$stmt->bindParam(':email', $email);
-          	$stmt->execute();
+        $kontrolle = $conn->prepare("SELECT freiePlaetze FROM `event` WHERE IDEvent = " . $idEventBestaetigung);
+        //echo "hsiu " . $kontrolle . "vhjkv";
+        if ($kontrolle != 0){
+            try{
+                // prepare sql and bind parameters
+                $stmt = $conn->prepare("INSERT INTO personen (`Geschlecht`, `Nachname`, `Vorname`, `Geburtstag`, `Schule`, `Klasse`, `Niveau`, `PLZ`, `Ort`, `Strasse`, `Hausnummer`, `Zusatz Strasse`, `Telefon`, `E-Mail`)
+                VALUES (:gender, :surname, :firstname, :bday, :school, :class, :level, :postcode, :place, :street, :housenumber, :additionalstreet, :mobile, :email)");
+                $stmt->bindParam(':gender', $gender);
+                $stmt->bindParam(':surname', $surname);
+                $stmt->bindParam(':firstname', $firstname);
+                $stmt->bindParam(':bday', $bday);
+                $stmt->bindParam(':school', $school);
+                $stmt->bindParam(':class', $class);
+                $stmt->bindParam(':level', $level);
+                $stmt->bindParam(':postcode', $postcode);
+                $stmt->bindParam(':place', $place);
+                $stmt->bindParam(':street', $street);
+                $stmt->bindParam(':housenumber', $housenumber);
+                $stmt->bindParam(':additionalstreet', $additionalstreet);
+                $stmt->bindParam(':mobile', $mobile);
+                $stmt->bindParam(':email', $email);
+                $stmt->execute();
+            }
+            catch(PDOException $e) {
+                echo "Error: " . $e->getMessage();
+            }
+
+            try{
+               $neuFreiePlaetzeBestaetigung = $freiePlaetzeBestaetigung - 1;
+
+               $sql = "UPDATE event SET freiePlaetze = " . $neuFreiePlaetzeBestaetigung . " WHERE IDEvent = " . $idEventBestaetigung . "";
+
+               $stmtTwo = $conn->prepare($sql);
+               $stmtTwo->execute();
+            }
+            catch(PDOException $e){
+                 echo "Error2: " . $e->getMessage();
+            }
+
         }
-        catch(PDOException $e) {
-            echo "Error: " . $e->getMessage();
+        else{
+            echo "kein Platz mehr :'(";
         }
 
-        try{
-           $neuFreiePlaetzeBestaetigung = $freiePlaetzeBestaetigung - 1;
-
-		   $sql = "UPDATE event SET freiePlaetze = " . $neuFreiePlaetzeBestaetigung . " WHERE IDEvent = " . $idEventBestaetigung . "";
-
-           $stmtTwo = $conn->prepare($sql);
-           $stmtTwo->execute();
-        }
-        catch(PDOException $e){
-             echo "Error2: " . $e->getMessage();
-        }
 
             $conn = null;
 
