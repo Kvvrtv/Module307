@@ -10,7 +10,7 @@
 	<body>
 	
 		<?php
-		error_reporting(E_ALL & ~E_WARNING);
+		//error_reporting(E_ALL & ~E_WARNING);
 		//Variabel
 		
 		//database
@@ -45,12 +45,21 @@
 		
 		// database
 
+       echo "Beruf: " . $apprenticeshipBestaetigung . " Datum: " . $dateBestaetigung . " freie Plätze: " . $freiePlaetzeBestaetigung . " IDEvent: " . $idEventBestaetigung;
+
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $kontrolle = $conn->prepare("SELECT freiePlaetze FROM `event` WHERE IDEvent = " . $idEventBestaetigung);
-        //echo "hsiu " . $kontrolle . "vhjkv";
+         try{
+          $kontrolle = $conn->query("SELECT freiePlaetze FROM `event` WHERE IDEvent = " . $idEventBestaetigung);
+          $kontrolle->execute();
+         }
+         catch(PDOException $e) {
+          echo "Error: " . $e->getMessage();
+         }
+        //var_dump(is_numeric($kontrolle));
+        //echo number_format($kontrolle);
+        echo "Variable kontrolle: " . $kontrolle;
         if ($kontrolle != 0){
             try{
                 // prepare sql and bind parameters
@@ -94,7 +103,7 @@
         }
 
 
-            $conn = null;
+        $conn = null;
 
 		/*try {
 			$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
