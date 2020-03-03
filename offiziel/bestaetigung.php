@@ -31,7 +31,7 @@
 		$street = $_POST['Strasse'];
 		$housenumber = $_POST['Hausnummer'];
 		$additionalstreet = $_POST['ZusatzStrasse'];
-		$mobile = $_POST['Telefon'];
+		$telefon = $_POST['Telefon'];
 		$email = $_POST['E-Mail'];
 		
 		//end database 
@@ -40,27 +40,44 @@
 		$dateBestaetigung = $_POST['Date'];
 		$freiePlaetzeBestaetigung = $_POST['FreiePlaetze'];
 		$idEventBestaetigung = $_POST['IdEvent'];
+
+		$mobile = "+41 " . $telefon;
 		
 		//end Variabel
 		
 		// database
 
-       echo "Beruf: " . $apprenticeshipBestaetigung . " Datum: " . $dateBestaetigung . " freie Plätze: " . $freiePlaetzeBestaetigung . " IDEvent: " . $idEventBestaetigung;
+       echo "Beruf: " . $apprenticeshipBestaetigung . " | Datum: " . $dateBestaetigung . " | freie Plätze: " . $freiePlaetzeBestaetigung . " | IDEvent: " . $idEventBestaetigung .
+        " Geschlecht: " .$gender. " Nachname: " . $surname . " Vorname: " . $firstname . " Bday: " . $bday . " Schule: " . $school . " Klasse: " . $class . " Niveau: " . $level .
+        " PLZ: " . $postcode . " Ort: " . $place . " Strasse: " . $street . " Hausnummer: " . $housenumber . " ZusatzStrasse: " . $additionalstreet . " Telefon: " . $mobile . " E-Mail: " . $email;
 
-		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
          try{
-          $kontrolle = $conn->query("SELECT freiePlaetze FROM `event` WHERE IDEvent = " . $idEventBestaetigung);
-          $kontrolle->execute();
+          $query = "SELECT freiePlaetze FROM `event` WHERE IDEvent = ?";
+          $statement = $conn->prepare($query);
+          $statement->bind_param( "i", $idEventBestaetigung);
+          $statement->execute();
+
+          $result = $statement->get_result();
+          //echo "freiePlaetze: " . $result;
+
+          while($row = $result->fetch_object()) {
+            echo $row->freiePlaetze;
+          }
+          //$query = mysqli_query("SELECT freiePlaetze FROM `event` WHERE IDEvent = " . $idEventBestaetigung);
+          //$row = mysqli_fetch_row($query);
          }
          catch(PDOException $e) {
           echo "Error: " . $e->getMessage();
          }
-        //var_dump(is_numeric($kontrolle));
-        //echo number_format($kontrolle);
-        echo "Variable kontrolle: " . $kontrolle;
-        if ($kontrolle != 0){
+        if ($row['freiePlaetze'] != 0){
             try{
                 // prepare sql and bind parameters
                 $stmt = $conn->prepare("INSERT INTO personen (`Geschlecht`, `Nachname`, `Vorname`, `Geburtstag`, `Schule`, `Klasse`, `Niveau`, `PLZ`, `Ort`, `Strasse`, `Hausnummer`, `Zusatz Strasse`, `Telefon`, `E-Mail`)
@@ -95,16 +112,116 @@
             }
             catch(PDOException $e){
                  echo "Error2: " . $e->getMessage();
+            }?>
+
+            <!-- end database -->
+
+            <!--Navbar -->
+            <nav class="navbar" color="grey-light">
+              <div class="navbar-brand">
+                <a class="navbar-item" href="http://localhost/Module307/offiziel/index.php">
+                  <img src="Bilder\Logo.png" alt="TIE Logo">
+                </a>
+              </div>
+            </nav>
+            <!-- end Navbar-->
+
+            <!-- title/Spruch -->
+            <div class="columns">
+              <div class="column is-one-fifth"></div>
+              <div <p class="title is-1">Jetzt kannst du noch entscheiden</p></div>
+            </div>
+            <div class="columns">
+              <div class="column is-two-fifths"></div>
+              <p class="subtitle is-2">Finde heraus was zu dir passt </br></br></p>
+            </div>
+            <!-- end title/motto -->
+
+            <div class="columns">
+              <div class="column"></div>
+              <div class="column is-three-quarter">
+                <article class="message is-primary">
+                  <div class="message-header">
+                    <p>Bestätigung</p>
+                  </div>
+                  <div class="message-body">
+                        Hey <?php echo $firstname ?>!</br>
+                        Deine Daten wurden erfolgreich zugestellt. Wir melden uns so schnell wie möglich.
+                        Bis dahin findest du uns <a href="https://www.tie-international.com">hier</a>!
+                        Wir freuen uns dich am <?php echo $dateBestaetigung ?> kennenzulernen und
+                        dir einen genaueren Einblick als <?php echo $apprenticeshipBestaetigung ?> zu erschaffen.</br>
+                  </div>
+                </article>
+              </div>
+              <div class="column"></div>
+            </div>
+            <!-- footer -->
+            <footer class="footer">
+              <div class="content has-text-centered">
+                <p>
+                  <strong><a href="https://www.tie-international.com">TIE International</a></strong> by Keerthi ÜK 307
+                </p>
+              </div>
+              </br></br></br>
+            </footer>
+            <!-- end  footer -->
             }
+            else{
+              <!--Navbar -->
+              <nav class="navbar" color="grey-light">
+                <div class="navbar-brand">
+                  <a class="navbar-item" href="http://localhost/Module307/offiziel/index.php">
+                    <img src="Bilder\Logo.png" alt="TIE Logo">
+                  </a>
+                </div>
+              </nav>
+              <!-- end Navbar-->
 
+              <!-- title/motto -->
+              <div class="columns">
+                <div class="column is-one-fifth"></div>
+                <div <p class="title is-1">Jetzt kannst du noch entscheiden</p></div>
+              </div>
+              <div class="columns">
+                <div class="column is-two-fifths"></div>
+                <p class="subtitle is-2">Finde heraus was zu dir passt </br></br></p>
+              </div>
+              <!-- end title/motto -->
+
+              <div class="columns">
+                <div class="column"></div>
+                <div class="column is-three-quarter">
+                  <article class="message is-primary">
+                    <div class="message-header">
+                      <p>Bestätigung</p>
+                    </div>
+                    <div class="message-body">
+                      Hey <?php echo $firstname ?>!</br>
+                      Es tut uns leid dir mitzuteilen, dass alle Plätze schon besetzt sind. </br>
+                      Wir bitten dich ein anderes Datum auszuwählen.</br>
+                      <a href="http://localhost/Module307/offiziel/index.php">Hier</a> kommst du wieder auf Startseite. </br>
+                    </div>
+                  </article>
+                </div>
+                <div class="column"></div>
+              </div>
+
+              <!-- footer -->
+              <footer class="footer">
+                <div class="content has-text-centered">
+                  <p>
+                    <strong><a href="https://www.tie-international.com">TIE International</a></strong> by Keerthi ÜK 307
+                  </p>
+                </div>
+                </br></br></br>
+              </footer>
+              <!-- end  footer -->
+          <?php
         }
-        else{
-            echo "kein Platz mehr :'(";
-        }
 
-
+        $conn->close();
         $conn = null;
-
+        ?>
 		/*try {
 			$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 			// set the PDO error mode to exception
@@ -133,58 +250,5 @@
 			echo $sql . "<br>" . $e->getMessage();
 			print_r($sql->errorInfo());
 		}*/
-
-		?>
-		<!-- end database -->
-		<!--Navbar -->
-		<nav class="navbar" color="grey-light">
-		  <div class="navbar-brand">
-			<a class="navbar-item" href="http://localhost/Module307/offiziel/index.php">
-			  <img src="Bilder\Logo.png" alt="TIE Logo">
-			</a>
-		  </div>
-		</nav>
-		<!-- end Navbar-->
-		
-		<!-- title/Spruch -->
-		<div class="columns">
-		  <div class="column is-one-fifth"></div>
-		  <div <p class="title is-1">Jetzt kannst du noch entscheiden</p></div>
-		</div>
-		<div class="columns">
-		  <div class="column is-two-fifths"></div>
-		  <p class="subtitle is-2">Finde heraus was zu dir passt </br></br></p>
-		</div>
-		<!-- end title/motto -->
-
-		<div class="columns">
-		  <div class="column"></div>
-		  <div class="column is-three-quarter">
-			<article class="message is-primary">
-			  <div class="message-header">
-				<p>Bestätigung</p>
-			  </div>
-			  <div class="message-body">
-					Hey <?php echo $firstname ?>!</br>
-					Deine Daten wurden erfolgreich zugestellt. Wir melden uns so schnell wie möglich.
-					Bis dahin findest du uns <a href="https://www.tie-international.com">hier</a>!
-					Wir freuen uns dich am <?php echo $dateBestaetigung ?> kennenzulernen und
-					dir einen genaueren Einblick als <?php echo $apprenticeshipBestaetigung ?> zu erschaffen.</br>
-			  </div>
-			</article>
-		  </div>
-		  <div class="column"></div>
-		</div>
-		
-		<!-- footer -->
-		<footer class="footer">
-		  <div class="content has-text-centered">
-			<p>
-			  <strong><a href="https://www.tie-international.com">TIE International</a></strong> by Keerthi ÜK 307
-			</p>
-		  </div>
-		  </br></br></br>
-		</footer>
-		<!-- end  footer -->
 	</body>
 </html>
