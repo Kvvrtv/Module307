@@ -112,21 +112,23 @@
 					$result = $conn->query($sql);
 					if ($result->num_rows > 0) {
 						// output data of each row
+						echo "<tr>";
 						while($row = $result->fetch_assoc()) {
 							echo "
 							<th>" . $row['Datum'] . "</th>
 							<td>" . $row['Beruf'] . "</td>
 							<td>" . $row['freiePlaetze'] . " von " . $row['MaxPlaetze'] . "</td>";
-							 if ($row['freiePlaetze'] != "0") {
+							if ($row['freiePlaetze'] != "0") {
 							  echo "<td><a href='http://localhost/Module307/offiziel/schnupperlehreFormular.php?apprenticeship=" . $row['Beruf'] . "&date=" . $row['Datum'] . "&freiePlaetze=" . $row['freiePlaetze'] . "&idEvent=" . $row['IDEvent'] . "'>
 							  <input class='button is-link' type='submit' value='anmelden' /></a></td>";
 					        }
 							else{
 						      echo "<td><input class='button is-link' type='submit' value='anmelden' disabled/></td>";
 							}
-							  echo "</tr>";
+							echo "</tr>";
 				        }
-				    $conn = null;
+
+				        $conn = null;
 					}
 					?>
 				</tbody>
