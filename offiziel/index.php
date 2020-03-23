@@ -12,19 +12,20 @@
 	<body>
 		<?php
 		    //Variabel
-			
+
 			//database
 			$servername = "127.0.0.1";
 			$username = "root";
 			$password = "";
 			$dbname = "tieinternational";
-			//end database 
-			
+			//end database
+
 			//$apprenticeship;
 			//$date;
-			
+
 			//end Variabel
 		?>
+
 		
 		<!--Navbar -->
 		<nav class="navbar" color="grey-light">
