@@ -70,7 +70,7 @@
             <div class="columns is-desktop">
                 <div class="column">
                      <div class="field-label is-normal">
-                         <label class="label">
+                         <label class="label is-left">
                             Geschlecht*
                          </label>
                      </div>
@@ -95,14 +95,13 @@
                         </div>
                     </div>
                 </div>
+                <div class="column"></div>
             </div>
 
-            <div class="field is-horizontal">
                 <div class="columns is-desktop">
-                    <div class="column"></div>
                     <div class="column">
                         <div class="field-label is-normal">
-                            <label class="label">Nachname*</label>
+                            <label class="label is-right">Nachname*</label>
                         </div>
                     </div>
                     <div class="column">
@@ -115,12 +114,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="field is-horizontal">
-                <div class="columns is-desktop">
                     <div class="column"></div>
+                </div>
+
+                <div class="columns is-desktop">
                     <div class="column">
                         <div class="field-label is-normal">
                             <label class="label">Vorname*</label>
@@ -136,12 +133,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="field is-horizontal">
-                <div class="columns is-desktop">
                     <div class="column"></div>
+                </div>
+
+                <div class="columns is-desktop">
                     <div class="column">
                       <div class="field-label is-normal">
                         <label class="label">Geburtstag*</label>
@@ -157,12 +152,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="field is-horizontal">
-                <div class="columns is-desktop">
                     <div class="column"></div>
+                </div>
+
+                <div class="columns is-desktop">
                     <div class="column">
                         <div class="field-label is-normal">
                             <label class="label">Schule*</label>
@@ -178,10 +171,9 @@
                             </div>
                         </div>
                     </div>
+                    <div class="column"></div>
                 </div>
-            </div>
 
-            <div class="field is-horizontal">
                 <div class="columns is-desktop">
                     <div class="column">
                         <div class="field-label is-normal">
@@ -198,10 +190,9 @@
                             </div>
                          </div>
                     </div>
+                    <div class="column"></div>
                 </div>
-            </div>
 
-            <div class="field is-horizontal">
                 <div class="columns is-desktop">
                     <div class="column">
                       <div class="field-label is-normal">
@@ -218,10 +209,9 @@
                         </div>
                       </div>
                     </div>
+                    <div class="column"></div>
                 </div>
-            </div>
 
-			<div class="field is-horizontal">
                 <div class="columns is-desktop">
                     <div class="column">
                       <div class="field-label is-normal">
@@ -238,10 +228,9 @@
                         </div>
                       </div>
 			        </div>
+			        <div class="column"></div>
 			    </div>
-			</div>
 
-			<div class="field is-horizontal">
                 <div class="columns is-desktop">
                     <div class="column">
                       <div class="field-label is-normal">
@@ -258,10 +247,9 @@
                         </div>
                       </div>
                     </div>
+                    <div class="column"></div>
                 </div>
-			</div>
 
-			<div class="field is-horizontal">
                 <div class="columns is-desktop">
                     <div class="column">
                       <div class="field-label is-normal">
@@ -278,10 +266,9 @@
                         </div>
                       </div>
                     </div>
+                    <div class="column"></div>
                 </div>
-			</div>
 
-			<div class="field is-horizontal">
                 <div class="columns is-desktop">
                     <div class="column">
                       <div class="field-label is-normal">
@@ -298,10 +285,9 @@
                         </div>
                       </div>
                     </div>
+                    <div class="column"></div>
                 </div>
-			</div>
 
-			<div class="field is-horizontal">
                 <div class="columns is-desktop">
                     <div class="column">
                       <div class="field-label is-normal">
@@ -318,11 +304,11 @@
                         </div>
                       </div>
                     </div>
+                    <div class="column"></div>
                 </div>
-			</div>
 
-			<div class="field is-horizontal">
                 <div class="columns is-desktop">
+                    <div class="column"></div>
                     <div class="column">
                       <div class="field-label">
                       </div>
@@ -342,10 +328,9 @@
                         </div>
                       </div>
                     </div>
+                    <div class="column"></div>
                 </div>
-			</div>
 
-			<div class="field is-horizontal">
                 <div class="columns is-desktop">
                     <div class="column">
                       <div class="field-label is-normal">
@@ -362,6 +347,28 @@
                         </div>
                       </div>
                     </div>
+                    <div class="column"></div>
                 </div>
-			</div>
+                    <input class="input" type="hidden" value="<?php echo $apprenticeship?>" name="Apprenticeship" >
+                    <input class="input" type="hidden" value="<?php echo $date?>" name="Date" >
+                    <input class="input" type="hidden" value="<?php echo $freiePlaetze?>" name="FreiePlaetze" >
+                    <input class="input" type="hidden" value="<?php echo $idEvent?>" name="IdEvent" >
+			        <div class="field-label">
+				        <!-- Left empty for spacing -->
+			        </div>
+
+                <div class="columns is-desktop">
+                    <div class="column">
+                        <div class="field-body">
+                            <div class="field">
+                                <div class="control">
+                                    <button class="button is-primary">
+                                        <!--  <input type="submit" value="abschicken" />-->
+                                            abschicken
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         </form>
