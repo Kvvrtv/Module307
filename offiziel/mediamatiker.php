@@ -26,6 +26,9 @@
         </div>
         <div id="navMenu" class="navbar-menu">
             <div class="navbar-start">
+                <a class="navbar-item" href="privat.php">
+                    Alle
+                </a>
                 <a class="navbar-item" href="infomatikerAppi.php">
                     Infomatiker Appi
                 </a>
@@ -98,7 +101,7 @@
                                 <tbody>
                                 <tr>
                                     <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                    <td>applikation</td>
+                                    <td>mediamatiker</td>
                                     <td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>
                                 </tr>
                                 </tbody>
