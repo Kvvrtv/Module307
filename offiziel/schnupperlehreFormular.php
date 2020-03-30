@@ -1,43 +1,53 @@
 <!DOCTYPE html>
 <html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-    @media only screen and (min-width: 600px) {
-        .label {
-            text-align: right;
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @media only screen and (min-width: 600px) {
+            .label {
+                text-align: right;
+            }
+            .titel{
+                font-family: "Times New Roman";
+            }
+            .subtitelZwei{
+                font-family: "Times New Roman";
+            }
+            .subtitelDrei{
+                font-family: "Times New Roman";
+            }
         }
-    }
-    @media only screen and (max-width: 600px) {
-        .label {
-            margin-left: 5%;
+        @media only screen and (max-width: 600px) {
+            .label {
+                margin-left: 5%;
+            }
+            .input{
+                margin-left: 5%;
+            }
+            .extraAbstand{
+                margin-left: 5%;
+            }
+            .help{
+                margin-left: 5%;
+            }
+            body{
+                margin-left: 5%;
+            }
+            .titel{
+                font-size:30px;
+                margin-left:5%;
+                font-family: "Times New Roman";
+            }
+            .subtitelZwei{
+                font-size:20px;
+                margin-left:10%;
+                font-family: "Times New Roman";
+            }
+            .subtitelDrei{
+                font-size:10px;
+                margin-left:15%;
+                font-family: "Times New Roman";
+            }
         }
-        .input{
-            margin-left: 5%;
-        }
-        .extraAbstand{
-            margin-left: 5%;
-        }
-        .help{
-            margin-left: 5%;
-        }
-        body{
-            margin-left: 5%;
-        }
-        .titel{
-            font-size:30px;
-            margin-left:5%;
-        }
-        .subtitelZwei{
-            font-size:20px;
-            margin-left:10%;
-        }
-        .subtitelDrei{
-            font-size:10px;
-            margin-left:15%;
-        }
-    }
-
-
     </style>
 	<head>
 		<link rel="stylesheet" href="bulma-0.8.0\css\bulma.min.css">
@@ -81,7 +91,7 @@
 		<div class="columns">
             <div class="column is-one-fifth"></div>
                 <p class="title is-1">
-                    <div class="titel">
+                    <div class="titel" style="font-size:200%;">
                         Jetzt kannst du noch entscheiden
                     </div>
                 </p>
@@ -90,7 +100,7 @@
 		<div class="columns">
 		  <div class="column is-two-fifths"></div>
 		    <p class="subtitle is-2">
-                <div class="subtitelZwei">
+                <div class="subtitelZwei" style="font-size:160%;">
                     Finde heraus was zu dir passt
                 </div>
             </p>
@@ -104,7 +114,6 @@
                     als " . $apprenticeship . " am " . $date . ".";?>
                 </div>
               </p>
-
         </div>
 
 		</br>
