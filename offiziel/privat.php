@@ -26,7 +26,10 @@
                 </div>
                 <div id="navMenu" class="navbar-menu">
                     <div class="navbar-start">
-                        <a class="navbar-item" href="infomatikerAppi.php">
+                        <a class="navbar-item" href="privat.php" style="color:blue;">
+                            Alle
+                        </a>
+                        <a class="navbar-item" href="infomatikerAppi.php" style="color:blue;">
                             Infomatiker Appi
                         </a>
                         <a class="navbar-item" href="mediamatiker.php">
@@ -99,6 +102,11 @@
                                             <tr>
                                                 <td width="5%"><i class="fa fa-bell-o"></i></td>
                                                 <td>applikation</td>
+                                                <td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                <td>mediamatik</td>
                                                 <td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>
                                             </tr>
                                             </tbody>
