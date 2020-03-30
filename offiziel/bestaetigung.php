@@ -211,7 +211,6 @@
                         <strong><a href="https://www.tie-international.com">TIE International</a></strong> by Keerthi ÜK 307
                     </p>
                 </div>
-                </br></br></br>
             </footer>
             <!-- end footer -->
             <?php
