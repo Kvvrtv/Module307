@@ -99,11 +99,11 @@
                                 <div class="content">
                                     <table class="table is-fullwidth is-striped">
                                         <tbody>
-                                        <tr>
-                                            <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                            <td>applikation</td>
-                                            <td class="level-right"><a class="button is-small is-primary" href="#">Action</a></td>
-                                        </tr>
+                                            <tr>
+                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
+                                                <td>applikation</td>
+                                                <td class="level-right"><a class="button is-small is-primary" href="Applikation\datum.php">Deteils</a></td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
