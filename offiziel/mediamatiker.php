@@ -105,7 +105,12 @@
                             </table>
                         </div>
                     </div>
-                    <footer class="card-footer">
+                    <footer class="footer">
+                        <div class="content has-text-centered">
+                            <p>
+                                <strong><a href="https://www.tie-international.com">TIE International</a></strong> by Keerthi ÜK 307
+                            </p>
+                        </div>
                     </footer>
                 </div>
             </div>
