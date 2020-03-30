@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-<style>
-</style>
+    <style>
+    </style>
 <head>
     <link rel="stylesheet" href="bulma-0.8.0\css\bulma.min.css">
     <link rel="stylesheet" href="bulma-0.8.0\css\bulma.css">
