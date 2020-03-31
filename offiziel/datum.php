@@ -110,20 +110,26 @@
                             <table class="table is-fullwidth is-striped">
                                 <tbody>
                                 <?php
+                                //$resultPerson = $conn->prepare("SELECT * FROM personen WHERE IDPerson = ?");
+                                //$resultPerson->bind_param("i", $idEvent);
                                 // connection database
-                                $sql = "SELECT * FROM person";
-                                $result = $conn->query($sql);
+                                $result = $conn->query("SELECT PersonID FROM zusammenfassung WHERE EventID = " . $idEvent);
+                                //$result->bind_param("i", $idEvent);
                                 if ($result->num_rows > 0) {
+
                                     // output data of each row
                                     echo "<tr>";
                                     while($row = $result->fetch_assoc()) {
                                         echo "
                                                     <td width=\"5%\"><i class=\"fa fa-bell-o\"></i></td>
-                                                    <td>" . $row['Beruf'] . "</td>
-                                                    <td>" . $row['Datum'] . "</td>
-                                                    <td><a href='http://localhost/Module307/offiziel/datum.php?idEvent=" . $row['IDEvent'] . "'>
-							                            <input class='button is-link' type='submit' value='Details' /></a></td>";
-                                        echo "</tr>";
+                                                    <td>" . $row['PersonID'] . "</td>
+                                                    <!--<td>"/* . $row['Nachname'] . "</td>
+                                                    <td>" . $row['Vorname'] . "</td>
+                                                    <td>" . $row['E-Mail'] . "</td>
+                                                    <td>" . $row['E-Mail'] . "</td>
+                                                    <td>" . $row['E-Mail'] . "</td>
+                                                    <td>" . $row['E-Mail'] . "</td>
+                                                    <td>" . $row['E-Mail'] . "</td>-->*/ "</tr>";
                                     }
                                     $conn = null;
                                 }
