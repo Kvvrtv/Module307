@@ -47,6 +47,7 @@
         <link rel="stylesheet" href="bulma-0.8.0\css\bulma.css">
     </head>
     <body>
+
         <?php
         //error_reporting(E_ALL & ~E_WARNING);
         //Variabel
@@ -92,11 +93,11 @@
         $sqlfrei->close();
 
         if ($row['freiePlaetze'] != "0") {
-            $stmtZwei = $conn->prepare("INSERT INTO personen (`Geschlecht`, `Nachname`, `Vorname`, `Geburtstag`, `Schule`, `Klasse`, `Niveau`, `PLZ`, `Ort`, `Strasse`, `Hausnummer`, `Zusatz Strasse`, `Telefon`, `E-Mail`)
+            $stmt = $conn->prepare("INSERT INTO personen (`Geschlecht`, `Nachname`, `Vorname`, `Geburtstag`, `Schule`, `Klasse`, `Niveau`, `PLZ`, `Ort`, `Strasse`, `Hausnummer`, `Zusatz Strasse`, `Telefon`, `E-Mail`)
                                                               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-            $stmtZwei->bind_param("ssssssssssssss", $gender, $surname, $firstname, $bday, $school, $class, $level, $postcode, $place, $street, $housenumber, $additionalstreet, $mobile, $email);
-            $stmtZwei->execute();$stmtZwei->close();
+            $stmt->bind_param("ssssssssssssss", $gender, $surname, $firstname, $bday, $school, $class, $level, $postcode, $place, $street, $housenumber, $additionalstreet, $mobile, $email);
+            $stmt->execute();$stmt->close();
             $neuFreiePlaetzeBestaetigung = $freiePlaetzeBestaetigung - 1;
             $sql = "UPDATE event SET freiePlaetze = " . $neuFreiePlaetzeBestaetigung . " WHERE IDEvent = " . $idEventBestaetigung . "";
             $stmtTwo = $conn->prepare($sql);
