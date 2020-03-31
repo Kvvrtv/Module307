@@ -11,6 +11,19 @@
         <link rel="stylesheet" href="bulma-0.8.0\css\bulma.css">
     </head>
     <body>
+        <?php
+        //database
+        $servername = "127.0.0.1";
+        $username = "root";
+        $password = "";
+        $dbname = "tieinternational";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        } ?>
         <!-- START NAV -->
         <nav class="navbar is-white">
             <div class="container">
@@ -83,7 +96,7 @@
                     </div>
                 </section>
                 <div class="columns">
-                    <div class="column is-6">
+                    <div class="column is-12">
                         <div class="card events-card">
                             <header class="card-header">
                                 <p class="card-header-title">
@@ -99,11 +112,25 @@
                                 <div class="content">
                                     <table class="table is-fullwidth is-striped">
                                         <tbody>
-                                            <tr>
-                                                <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                                <td>applikation</td>
-                                                <td class="level-right"><a class="button is-small is-primary" href="Applikation\datum.php">Deteils</a></td>
-                                            </tr>
+                                            <?php
+                                            // connection database
+                                            $sql = "SELECT * FROM event WHERE Beruf = 'Infomatiker EFZ Applikation'";
+                                            $result = $conn->query($sql);
+                                            if ($result->num_rows > 0) {
+                                                // output data of each row
+                                                echo "<tr>";
+                                                while($row = $result->fetch_assoc()) {
+                                                    echo "
+                                                        <td width=\"5%\"><i class=\"fa fa-bell-o\"></i></td>
+                                                        <td>" . $row['Beruf'] . "</td>
+                                                        <td>" . $row['Datum'] . "</td>
+                                                        <td><a href='http://localhost/Module307/offiziel/datum.php?idEvent=" . $row['IDEvent'] . "'>
+                                                            <input class='button is-link' type='submit' value='Details' /></a></td>";
+                                                    echo "</tr>";
+                                                }
+                                                $conn = null;
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
