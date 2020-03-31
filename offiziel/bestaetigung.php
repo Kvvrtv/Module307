@@ -93,7 +93,7 @@
         $sqlfrei->close();
 
         if ($row['freiePlaetze'] != "0") {
-            $stmt = $conn->prepare("INSERT INTO personen (`Geschlecht`, `Nachname`, `Vorname`, `Geburtstag`, `Schule`, `Klasse`, `Niveau`, `PLZ`, `Ort`, `Strasse`, `Hausnummer`, `Zusatz Strasse`, `Telefon`, `E-Mail`)
+            $stmt = $conn->prepare("INSERT INTO personen (`Geschlecht`, `Nachname`, `Vorname`, `Geburtstag`, `Schule`, `Klasse`, `Niveau`, `PLZ`, `Ort`, `Strasse`, `Hausnummer`, `ZusatzStrasse`, `Telefon`, `EMail`)
                                                               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $stmt->bind_param("ssssssssssssss", $gender, $surname, $firstname, $bday, $school, $class, $level, $postcode, $place, $street, $housenumber, $additionalstreet, $mobile, $email);
             $stmt->execute();$stmt->close();
