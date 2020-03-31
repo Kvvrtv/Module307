@@ -103,7 +103,7 @@
             $stmtTwo = $conn->prepare($sql);
             $stmtTwo->execute();$stmtTwo->close();
 
-            $sqlfreiZwei = $conn->prepare("SELECT IDPerson FROM person WHERE Telefon = ? AND Geburtstag = ?");
+            $sqlfreiZwei = $conn->prepare("SELECT IDPerson FROM personen WHERE Telefon = ? AND Geburtstag = ?");
             $sqlfreiZwei->bind_param("ss", $mobile, $bday);
             $sqlfreiZwei->execute();
             $resZwei = $sqlfreiZwei->get_result();
