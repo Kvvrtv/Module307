@@ -110,26 +110,41 @@
                             <table class="table is-fullwidth is-striped">
                                 <tbody>
                                 <?php
-                                //$resultPerson = $conn->prepare("SELECT * FROM personen WHERE IDPerson = ?");
-                                //$resultPerson->bind_param("i", $idEvent);
+                                $sqlfreiZwei = $conn->prepare("SELECT PersonID FROM zusammenfassung WHERE EventID = ?");
+                                $sqlfreiZwei->bind_param("i", $idEvent);
+                                $sqlfreiZwei->execute();
+                                $resZwei = $sqlfreiZwei->get_result();
+                                $rowZwei = $resZwei->fetch_assoc();
+                                $sqlfreiZwei->close();
+
+                                $result = $conn->query("SELECT personen.Geschlecht, personen.Nachname, personen.Vorname, personen.Geburtstag, personen.Schule,
+                                                                personen.Klasse, personen.Niveau, personen.PLZ, personen.Ort, personen.Strasse, personen.Hausnummer, 
+                                                                personen.ZusatzStrasse, personen.Telefon, personen.EMail
+                                                                FROM personen INNER JOIN zusammenfassung on personen.IDPerson = " . $rowZwei['PersonID']);
                                 // connection database
-                                $result = $conn->query("SELECT PersonID FROM zusammenfassung WHERE EventID = " . $idEvent);
                                 //$result->bind_param("i", $idEvent);
                                 if ($result->num_rows > 0) {
 
                                     // output data of each row
                                     echo "<tr>";
                                     while($row = $result->fetch_assoc()) {
+
                                         echo "
                                                     <td width=\"5%\"><i class=\"fa fa-bell-o\"></i></td>
-                                                    <td>" . $row['PersonID'] . "</td>
-                                                    <!--<td>"/* . $row['Nachname'] . "</td>
+                                                    <td>" . $row['Geschlecht'] . "</td>
+                                                    <td>" . $row['Nachname'] . "</td>
                                                     <td>" . $row['Vorname'] . "</td>
-                                                    <td>" . $row['E-Mail'] . "</td>
-                                                    <td>" . $row['E-Mail'] . "</td>
-                                                    <td>" . $row['E-Mail'] . "</td>
-                                                    <td>" . $row['E-Mail'] . "</td>
-                                                    <td>" . $row['E-Mail'] . "</td>-->*/ "</tr>";
+                                                    <td>" . $row['Geburtstag'] . "</td>
+                                                    <td>" . $row['Schule'] . "</td>
+                                                    <td>" . $row['Klasse'] . "</td>
+                                                    <td>" . $row['Niveau'] . "</td>
+                                                    <td>" . $row['PLZ'] . "</td>
+                                                    <td>" . $row['Ort'] . "</td>
+                                                    <td>" . $row['Strasse'] . "</td>
+                                                    <td>" . $row['Hausnummer'] . "</td>
+                                                    <td>" . $row['ZusatzStrasse'] . "</td>
+                                                    <td>" . $row['Telefon'] . "</td>
+                                                    <td>" . $row['EMail'] . "</td></tr>";
                                     }
                                     $conn = null;
                                 }
