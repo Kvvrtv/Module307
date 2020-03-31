@@ -55,10 +55,10 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="714" y="-649" key="FileChooserDialogImpl" timestamp="1585637789460">
+    <state x="714" y="-649" key="FileChooserDialogImpl" timestamp="1585667634124">
       <screen x="251" y="-768" width="1366" height="728" />
     </state>
-    <state x="714" y="-649" key="FileChooserDialogImpl/0.0.1536.824/251.-768.1366.728@251.-768.1366.728" timestamp="1585637789460" />
+    <state x="714" y="-649" key="FileChooserDialogImpl/0.0.1536.824/251.-768.1366.728@251.-768.1366.728" timestamp="1585667634124" />
     <state x="277" y="55" key="SettingsEditor" timestamp="1583230357745">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -82,10 +82,14 @@
     <state x="0" y="0" width="1549" height="910" key="dock-window-1/0.0.1536.824/0.-1080.1920.1040@0.-1080.1920.1040" timestamp="1583745010285" />
     <state x="366" y="55" width="1006" height="714" maximized="true" key="dock-window-1/0.0.1536.824/251.-768.1366.728@251.-768.1366.728" timestamp="1585642466778" />
     <state x="-7" y="-7" width="1550" height="878" key="dock-window-1/0.0.1536.824@0.0.1536.824" timestamp="1582700195041" />
-    <state x="249" y="97" width="1130" height="714" key="dock-window-2" timestamp="1585659464863">
+    <state x="317" y="-6" width="804" height="504" maximized="true" key="dock-window-2" timestamp="1585664894285">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="249" y="97" width="1130" height="714" key="dock-window-2/0.0.1536.824/251.-768.1366.728@251.-768.1366.728" timestamp="1585659464863" />
+    <state x="317" y="-6" width="804" height="504" maximized="true" key="dock-window-2/0.0.1536.824/251.-768.1366.728@251.-768.1366.728" timestamp="1585664894285" />
+    <state x="59" y="0" width="1337" height="714" maximized="true" key="dock-window-3" timestamp="1585667614419">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="59" y="0" width="1337" height="714" maximized="true" key="dock-window-3/0.0.1536.824/251.-768.1366.728@251.-768.1366.728" timestamp="1585667614419" />
     <state x="425" y="187" key="run.anything.popup" timestamp="1585062979582">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
