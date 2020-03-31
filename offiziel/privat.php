@@ -68,11 +68,6 @@
                             </div>
                         </div>
                     </section>
-                    <?php
-                    // connection database
-                    $sql = "SELECT * FROM event";
-
-                    ?>
                     <section class="info-tiles">
                         <div class="tile is-ancestor has-text-centered">
                             <div class="tile is-parent">
