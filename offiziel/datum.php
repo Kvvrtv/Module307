@@ -12,6 +12,7 @@
 </head>
 <body>
     <?php
+    //error_reporting(E_NOTICE);
     //database
     $servername = "127.0.0.1";
     $username = "root";
@@ -121,6 +122,7 @@
                                                                 personen.Klasse, personen.Niveau, personen.PLZ, personen.Ort, personen.Strasse, personen.Hausnummer, 
                                                                 personen.ZusatzStrasse, personen.Telefon, personen.EMail
                                                                 FROM personen INNER JOIN zusammenfassung on personen.IDPerson = " . $rowZwei['PersonID']);
+                              
                                 // connection database
                                 //$result->bind_param("i", $idEvent);
                                 if ($result->num_rows > 0) {
@@ -147,6 +149,9 @@
                                                     <td>" . $row['EMail'] . "</td></tr>";
                                     }
                                     $conn = null;
+                                }
+                                else{
+                                    echo "<td> momentan hat sich noch keiner angemeldet </td>";
                                 }
                                 ?>
                                 </tbody>
