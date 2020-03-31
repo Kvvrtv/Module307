@@ -94,7 +94,7 @@
             </div>
         </section>
         <div class="columns">
-            <div class="column is-12">
+            <div class="column is-24">
                 <div class="card events-card">
                     <header class="card-header">
                         <p class="card-header-title">
@@ -111,21 +111,13 @@
                             <table class="table is-fullwidth is-striped">
                                 <tbody>
                                 <?php
-                                $sqlfreiZwei = $conn->prepare("SELECT PersonID FROM zusammenfassung WHERE EventID = ?");
-                                $sqlfreiZwei->bind_param("i", $idEvent);
-                                $sqlfreiZwei->execute();
-                                $resZwei = $sqlfreiZwei->get_result();
-                                $rowZwei = $resZwei->fetch_assoc();
-                                $sqlfreiZwei->close();
-
-                                $result = $conn->query("SELECT personen.Geschlecht, personen.Nachname, personen.Vorname, personen.Geburtstag, personen.Schule,
-                                                                personen.Klasse, personen.Niveau, personen.PLZ, personen.Ort, personen.Strasse, personen.Hausnummer, 
-                                                                personen.ZusatzStrasse, personen.Telefon, personen.EMail
-                                                                FROM personen INNER JOIN zusammenfassung on personen.IDPerson = " . $rowZwei['PersonID']);
-                              
-                                // connection database
-                                //$result->bind_param("i", $idEvent);
-                                if ($result->num_rows > 0) {
+                                $sql = $conn->prepare("SELECT personen.Geschlecht, personen.Nachname, personen.Vorname, personen.Geburtstag, personen.Schule,
+                                personen.Klasse, personen.Niveau, personen.PLZ, personen.Ort, personen.Strasse, personen.Hausnummer, 
+                                personen.ZusatzStrasse, personen.Telefon, personen.EMail
+                                FROM personen JOIN zusammenfassung on personen.IDPerson = zusammenfassung.PersonID WHERE EventID = ?");
+                                $sql->bind_param("i", $idEvent);
+                                if ($sql->execute()) {
+                                    $result = $sql->get_result();
 
                                     // output data of each row
                                     echo "<tr>";
