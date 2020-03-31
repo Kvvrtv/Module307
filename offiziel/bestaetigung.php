@@ -95,13 +95,8 @@
         if ($row['freiePlaetze'] != "0") {
             $stmt = $conn->prepare("INSERT INTO personen (`Geschlecht`, `Nachname`, `Vorname`, `Geburtstag`, `Schule`, `Klasse`, `Niveau`, `PLZ`, `Ort`, `Strasse`, `Hausnummer`, `Zusatz Strasse`, `Telefon`, `E-Mail`)
                                                               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
             $stmt->bind_param("ssssssssssssss", $gender, $surname, $firstname, $bday, $school, $class, $level, $postcode, $place, $street, $housenumber, $additionalstreet, $mobile, $email);
             $stmt->execute();$stmt->close();
-            $neuFreiePlaetzeBestaetigung = $freiePlaetzeBestaetigung - 1;
-            $sql = "UPDATE event SET freiePlaetze = " . $neuFreiePlaetzeBestaetigung . " WHERE IDEvent = " . $idEventBestaetigung . "";
-            $stmtTwo = $conn->prepare($sql);
-            $stmtTwo->execute();$stmtTwo->close();
 
             $sqlfreiZwei = $conn->prepare("SELECT IDPerson FROM personen WHERE Telefon = ? AND Geburtstag = ?");
             $sqlfreiZwei->bind_param("ss", $mobile, $bday);
@@ -112,9 +107,16 @@
 
             $stmtZwei = $conn->prepare("INSERT INTO zusammenfassung (`PersonID`, `EventID`)
                                                               VALUES (?, ?)");
-
             $stmtZwei->bind_param("ii", $rowZwei['IDPerson'], $idEventBestaetigung);
             $stmtZwei->execute();$stmtZwei->close();
+
+            $neuFreiePlaetzeBestaetigung = $freiePlaetzeBestaetigung - 1;
+            $sql = "UPDATE event SET freiePlaetze = " . $neuFreiePlaetzeBestaetigung . " WHERE IDEvent = " . $idEventBestaetigung . "";
+            $stmtTwo = $conn->prepare($sql);
+            $stmtTwo->execute();$stmtTwo->close();
+
+
+
             ?>
             <!-- end database -->
 
