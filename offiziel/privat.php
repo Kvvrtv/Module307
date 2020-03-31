@@ -11,13 +11,19 @@
         <link rel="stylesheet" href="bulma-0.8.0\css\bulma.css">
     </head>
     <body>
-    <?php
-    // Create connection
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    // Check connection
-    if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-    } ?>
+        <?php
+        //database
+        $servername = "127.0.0.1";
+        $username = "root";
+        $password = "";
+        $dbname = "tieinternational";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+        } ?>
 
     <!-- START NAV -->
         <nav class="navbar is-white">
@@ -62,36 +68,41 @@
                             </div>
                         </div>
                     </section>
+                    <?php
+                    // connection database
+                    $sql = "SELECT * FROM event";
+
+                    ?>
                     <section class="info-tiles">
                         <div class="tile is-ancestor has-text-centered">
                             <div class="tile is-parent">
                                 <article class="tile is-child box">
                                     <p class="title">439k</p>
-                                    <p class="subtitle">Users</p>
+                                    <p class="subtitle">Events die noch kommen </p>
                                 </article>
                             </div>
                             <div class="tile is-parent">
                                 <article class="tile is-child box">
                                     <p class="title">59k</p>
-                                    <p class="subtitle">Products</p>
+                                    <p class="subtitle">fertige Events</p>
                                 </article>
                             </div>
                             <div class="tile is-parent">
                                 <article class="tile is-child box">
                                     <p class="title">3.4k</p>
-                                    <p class="subtitle">Open Orders</p>
+                                    <p class="subtitle">insgesamt Events</p>
                                 </article>
                             </div>
                             <div class="tile is-parent">
                                 <article class="tile is-child box">
                                     <p class="title">19</p>
-                                    <p class="subtitle">Exceptions</p>
+                                    <p class="subtitle">?</p>
                                 </article>
                             </div>
                         </div>
                     </section>
                     <div class="columns">
-                        <div class="column is-6">
+                        <div class="column is-12">
                             <div class="card events-card">
                                 <header class="card-header">
                                     <p class="card-header-title">
@@ -107,16 +118,25 @@
                                     <div class="content">
                                         <table class="table is-fullwidth is-striped">
                                             <tbody>
-                                                <tr>
-                                                    <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                                    <td>applikation</td>
-                                                    <td class="level-right"><a class="button is-small is-primary" href="Applikation\datum.php">Deteils</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td width="5%"><i class="fa fa-bell-o"></i></td>
-                                                    <td>mediamatik</td>
-                                                    <td class="level-right"><a class="button is-small is-primary" href="Mediamatik\datum.php">Deteils</a></td>
-                                                </tr>
+                                            <?php
+                                            // connection database
+                                            $sql = "SELECT * FROM event";
+                                            $result = $conn->query($sql);
+                                            if ($result->num_rows > 0) {
+                                                // output data of each row
+                                                echo "<tr>";
+                                                while($row = $result->fetch_assoc()) {
+                                                    echo "
+                                                    <td width=\"5%\"><i class=\"fa fa-bell-o\"></i></td>
+                                                    <td>" . $row['Beruf'] . "</td>
+                                                    <td>" . $row['Datum'] . "</td>
+                                                    <td><a href='http://localhost/Module307/offiziel/datum.php?idEvent=" . $row['IDEvent'] . "'>
+							                            <input class='button is-link' type='submit' value='Details' /></a></td>";
+                                                    echo "</tr>";
+                                                }
+                                                $conn = null;
+                                            }
+                                            ?>
                                             </tbody>
                                         </table>
                                     </div>
