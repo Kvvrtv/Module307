@@ -11,6 +11,22 @@
     <link rel="stylesheet" href="bulma-0.8.0\css\bulma.css">
 </head>
 <body>
+    <?php
+    //database
+    $servername = "127.0.0.1";
+    $username = "root";
+    $password = "";
+    $dbname = "tieinternational";
+
+    //Variable Get
+    $idEvent = $_GET['idEvent'];
+
+    // Create connection
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    } ?>
 <!-- START NAV -->
 <nav class="navbar is-white">
     <div class="container">
@@ -32,7 +48,7 @@
                 <a class="navbar-item" href="infomatikerAppi.php">
                     Infomatiker Appi
                 </a>
-                <a class="navbar-item" href="mediamatiker.php" style="color:blue;">
+                <a class="navbar-item" href="mediamatiker.php">
                     Mediamatiker
                 </a>
             </div>
@@ -59,42 +75,63 @@
                 <div class="tile is-parent">
                     <article class="tile is-child box">
                         <p class="title">439k</p>
-                        <p class="subtitle">Users</p>
+                        <p class="subtitle">Teilnehmer</p>
                     </article>
                 </div>
                 <div class="tile is-parent">
                     <article class="tile is-child box">
                         <p class="title">59k</p>
-                        <p class="subtitle">Products</p>
+                        <p class="subtitle">freie Plätze</p>
                     </article>
                 </div>
                 <div class="tile is-parent">
                     <article class="tile is-child box">
                         <p class="title">3.4k</p>
-                        <p class="subtitle">Open Orders</p>
-                    </article>
-                </div>
-                <div class="tile is-parent">
-                    <article class="tile is-child box">
-                        <p class="title">19</p>
-                        <p class="subtitle">Exceptions</p>
+                        <p class="subtitle">ingesammt Plätze</p>
                     </article>
                 </div>
             </div>
         </section>
         <div class="columns">
-            <div class="column is-6">
+            <div class="column is-12">
                 <div class="card events-card">
                     <header class="card-header">
                         <p class="card-header-title">
-                            Events
+                            Teilnehmer
                         </p>
                         <a href="#" class="card-header-icon" aria-label="more options">
-                                      <span class="icon">
-                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                      </span>
+                            <span class="icon">
+                                <i class="fa fa-angle-down" aria-hidden="true"></i>
+                            </span>
                         </a>
                     </header>
+                    <div class="card-table">
+                        <div class="content">
+                            <table class="table is-fullwidth is-striped">
+                                <tbody>
+                                <?php
+                                // connection database
+                                $sql = "SELECT * FROM person";
+                                $result = $conn->query($sql);
+                                if ($result->num_rows > 0) {
+                                    // output data of each row
+                                    echo "<tr>";
+                                    while($row = $result->fetch_assoc()) {
+                                        echo "
+                                                    <td width=\"5%\"><i class=\"fa fa-bell-o\"></i></td>
+                                                    <td>" . $row['Beruf'] . "</td>
+                                                    <td>" . $row['Datum'] . "</td>
+                                                    <td><a href='http://localhost/Module307/offiziel/datum.php?idEvent=" . $row['IDEvent'] . "'>
+							                            <input class='button is-link' type='submit' value='Details' /></a></td>";
+                                        echo "</tr>";
+                                    }
+                                    $conn = null;
+                                }
+                                ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
