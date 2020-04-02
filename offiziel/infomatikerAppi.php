@@ -72,25 +72,19 @@
                         <div class="tile is-parent">
                             <article class="tile is-child box">
                                 <p class="title">439k</p>
-                                <p class="subtitle">Users</p>
+                                <p class="subtitle">Events die noch kommen </p>
                             </article>
                         </div>
                         <div class="tile is-parent">
                             <article class="tile is-child box">
                                 <p class="title">59k</p>
-                                <p class="subtitle">Products</p>
+                                <p class="subtitle">fertige Events</p>
                             </article>
                         </div>
                         <div class="tile is-parent">
                             <article class="tile is-child box">
                                 <p class="title">3.4k</p>
-                                <p class="subtitle">Open Orders</p>
-                            </article>
-                        </div>
-                        <div class="tile is-parent">
-                            <article class="tile is-child box">
-                                <p class="title">19</p>
-                                <p class="subtitle">Exceptions</p>
+                                <p class="subtitle">insgesamt Events</p>
                             </article>
                         </div>
                     </div>
