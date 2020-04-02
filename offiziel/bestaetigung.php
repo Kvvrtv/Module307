@@ -92,6 +92,8 @@
         $row = $res->fetch_assoc();
         $sqlfrei->close();
 
+        //echo "resu " . $row['freiePlaetze'] . " njdk";
+
         if ($row['freiePlaetze'] != "0") {
             $stmt = $conn->prepare("INSERT INTO personen (`Geschlecht`, `Nachname`, `Vorname`, `Geburtstag`, `Schule`, `Klasse`, `Niveau`, `PLZ`, `Ort`, `Strasse`, `Hausnummer`, `ZusatzStrasse`, `Telefon`, `EMail`)
                                                               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -110,8 +112,8 @@
             $stmtZwei->bind_param("ii", $rowZwei['IDPerson'], $idEventBestaetigung);
             $stmtZwei->execute();$stmtZwei->close();
 
-            $neuFreiePlaetzeBestaetigung = $freiePlaetzeBestaetigung - 1;
-            $sql = "UPDATE event SET freiePlaetze = " . $neuFreiePlaetzeBestaetigung . " WHERE IDEvent = " . $idEventBestaetigung . "";
+            $neuFreiePlaetzeBestaetigung = $row['freiePlaetze'] - 1;
+            $sql = "UPDATE event SET freiePlaetze = " . $neuFreiePlaetzeBestaetigung . " WHERE IDEvent = " . $idEventBestaetigung . " ";
             $stmtTwo = $conn->prepare($sql);
             $stmtTwo->execute();$stmtTwo->close();
 
