@@ -67,30 +67,35 @@
                         </div>
                     </div>
                 </section>
+                <?php
+                //das muss noch korriegiert werden
+                $sqlfreiZwei = $conn->prepare("SELECT freiePlaetze, MaxPlaetze FROM event WHERE IDEvent = ?");
+                $sqlfreiZwei->bind_param("i", $idEvent);
+                $sqlfreiZwei->execute();
+                $resZwei = $sqlfreiZwei->get_result();
+                $rowZwei = $resZwei->fetch_assoc();
+                $sqlfreiZwei->close();
+
+                $teilnehmer = $rowZwei['MaxPlaetze'] - $rowZwei['freiePlaetze'];
+                ?>
                 <section class="info-tiles">
                     <div class="tile is-ancestor has-text-centered">
                         <div class="tile is-parent">
                             <article class="tile is-child box">
                                 <p class="title">439k</p>
-                                <p class="subtitle">Users</p>
+                                <p class="subtitle">Events die noch kommen </p>
                             </article>
                         </div>
                         <div class="tile is-parent">
                             <article class="tile is-child box">
                                 <p class="title">59k</p>
-                                <p class="subtitle">Products</p>
+                                <p class="subtitle">fertige Events</p>
                             </article>
                         </div>
                         <div class="tile is-parent">
                             <article class="tile is-child box">
                                 <p class="title">3.4k</p>
-                                <p class="subtitle">Open Orders</p>
-                            </article>
-                        </div>
-                        <div class="tile is-parent">
-                            <article class="tile is-child box">
-                                <p class="title">19</p>
-                                <p class="subtitle">Exceptions</p>
+                                <p class="subtitle">insgesamt Events</p>
                             </article>
                         </div>
                     </div>
@@ -103,9 +108,9 @@
                                     Events
                                 </p>
                                 <a href="#" class="card-header-icon" aria-label="more options">
-                                              <span class="icon">
-                                                <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                              </span>
+                                    <span class="icon">
+                                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                    </span>
                                 </a>
                             </header>
                             <div class="card-table">
