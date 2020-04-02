@@ -71,23 +71,33 @@
                 </div>
             </div>
         </section>
+        <?php
+        $sqlfreiZwei = $conn->prepare("SELECT freiePlaetze, MaxPlaetze FROM event WHERE IDEvent = ?");
+        $sqlfreiZwei->bind_param("i", $idEvent);
+        $sqlfreiZwei->execute();
+        $resZwei = $sqlfreiZwei->get_result();
+        $rowZwei = $resZwei->fetch_assoc();
+        $sqlfreiZwei->close();
+
+        $teilnehmer = $rowZwei['MaxPlaetze'] - $rowZwei['freiePlaetze'];
+        ?>
         <section class="info-tiles">
             <div class="tile is-ancestor has-text-centered">
                 <div class="tile is-parent">
                     <article class="tile is-child box">
-                        <p class="title">439k</p>
+                        <p class="title"><?php echo " " . $teilnehmer . " ";?></p>
                         <p class="subtitle">Teilnehmer</p>
                     </article>
                 </div>
                 <div class="tile is-parent">
                     <article class="tile is-child box">
-                        <p class="title">59k</p>
+                        <p class="title"><?php echo " " . $rowZwei['freiePlaetze'] . " ";?></p>
                         <p class="subtitle">freie Plätze</p>
                     </article>
                 </div>
                 <div class="tile is-parent">
                     <article class="tile is-child box">
-                        <p class="title">3.4k</p>
+                        <p class="title"><?php echo " " . $rowZwei['MaxPlaetze'] . " ";?></p>
                         <p class="subtitle">ingesammt Plätze</p>
                     </article>
                 </div>
@@ -127,8 +137,10 @@
                                                     <td width=\"5%\"><i class=\"fa fa-bell-o\"></i></td>
                                                     <td>" . $row['Geschlecht'] . "</td>
                                                     <td>" . $row['Nachname'] . "</td>
-                                                    <td>" . $row['Vorname'] . "</td>
-                                                    <td>" . $row['Geburtstag'] . "</td>
+                                                    <td>" . $row['Vorname'] . "</td> 
+                                                    <td>" . $row['Telefon'] . "</td>
+                                                    <td>" . $row['EMail'] . "</td></tr>";
+                                        /*<td>" . $row['Geburtstag'] . "</td>
                                                     <td>" . $row['Schule'] . "</td>
                                                     <td>" . $row['Klasse'] . "</td>
                                                     <td>" . $row['Niveau'] . "</td>
@@ -136,9 +148,7 @@
                                                     <td>" . $row['Ort'] . "</td>
                                                     <td>" . $row['Strasse'] . "</td>
                                                     <td>" . $row['Hausnummer'] . "</td>
-                                                    <td>" . $row['ZusatzStrasse'] . "</td>
-                                                    <td>" . $row['Telefon'] . "</td>
-                                                    <td>" . $row['EMail'] . "</td></tr>";
+                                                    <td>" . $row['ZusatzStrasse'] . " </td>*/
                                     }
                                     $conn = null;
                                 }
