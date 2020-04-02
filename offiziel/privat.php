@@ -68,6 +68,17 @@
                             </div>
                         </div>
                     </section>
+                    <?php
+                    //das muss noch korriegiert werden
+                    $sqlfreiZwei = $conn->prepare("SELECT freiePlaetze, MaxPlaetze FROM event WHERE IDEvent = ?");
+                    $sqlfreiZwei->bind_param("i", $idEvent);
+                    $sqlfreiZwei->execute();
+                    $resZwei = $sqlfreiZwei->get_result();
+                    $rowZwei = $resZwei->fetch_assoc();
+                    $sqlfreiZwei->close();
+
+                    $teilnehmer = $rowZwei['MaxPlaetze'] - $rowZwei['freiePlaetze'];
+                    ?>
                     <section class="info-tiles">
                         <div class="tile is-ancestor has-text-centered">
                             <div class="tile is-parent">
@@ -86,12 +97,6 @@
                                 <article class="tile is-child box">
                                     <p class="title">3.4k</p>
                                     <p class="subtitle">insgesamt Events</p>
-                                </article>
-                            </div>
-                            <div class="tile is-parent">
-                                <article class="tile is-child box">
-                                    <p class="title">19</p>
-                                    <p class="subtitle">?</p>
                                 </article>
                             </div>
                         </div>
